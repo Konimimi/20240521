@@ -1,3 +1,5 @@
+import argparse
+
 def generate_racing_horse_dict():
     ret_dict = {
         'Symboli Rudolf': {
@@ -45,8 +47,16 @@ def get_top():
             top_ratio = horse
     return {'top_run': top_race,'topwin': top_win,'top_ratio': top_ratio}
     
+def argument_parser():
+    parser = argparse.ArgumentParser(description="horse")
+    parser.add_argument(
+        '-choose', '--choose_item', dest='item', help='choose from "top_run", "topwin" or "top_ratio"',
+        type = str, required=False, default='top_run')
+    return parser.parse_args()
 
+def main():
+    args = argument_parser()
+    print(get_top()[args.item])
 
 if __name__ == '__main__':
-    horses = get_top()
-    print(horses)
+    main()
