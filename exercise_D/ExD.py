@@ -24,7 +24,29 @@ def generate_racing_horse_dict():
         }
     return ret_dict
 
+def get_top():
+    race_horse_dict = generate_racing_horse_dict()
+    comp_race = 0
+    comp_win = 0
+    comp_ratio = 0
+    top_race = ''
+    top_win = ''
+    top_ratio = ''
+    for horse in race_horse_dict.keys():
+        info = race_horse_dict[horse]
+        if int(info['race_num']) >= int(comp_race):
+            comp_race = info['race_num']
+            top_race = horse
+        if int(info['win_num']) >= int(comp_win):
+            comp_win = info['win_num']
+            top_win = horse
+        if int(info['win_ratio']) >= int(comp_ratio):
+            comp_tatio = info['win_ratio']
+            top_ratio = horse
+    return {'top_run': top_race,'topwin': top_win,'top_ratio': top_ratio}
+    
+
 
 if __name__ == '__main__':
-    horses = generate_racing_horse_dict()
+    horses = get_top()
     print(horses)
